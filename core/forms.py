@@ -10,8 +10,8 @@ from django_countries.widgets import CountrySelectWidget
 PAYMENT_CHOICES = (
 
     ('M', 'Flutterwave'),
-    ('S', 'Stripe'),
-    ('P', 'Paypal')
+    # ('S', 'Stripe'),
+    # ('P', 'Paypal')
 
 )
 
