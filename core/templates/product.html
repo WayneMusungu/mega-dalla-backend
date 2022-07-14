@@ -1,0 +1,68 @@
+{% extends "base.html" %} {% block content %}
+<div class="container-fluid">
+  <div class="container">
+    <div class="row pmain">
+      <div class="col-md-5 card pleft">
+        <div class="card-body pro-image"><img
+          src="{{ item.image.url }}"
+          class="img-fluid pimage"
+          alt=""
+        /></div>
+        <div class="card-footer">{{ item.title }}</div>
+      </div>
+      <div class="col-md-3 text-center pinfo">
+        <div>
+          <p class="lead">
+            {% if object.discount_price %}
+            <span class="mr-1">
+              <del>ksh {{ object.price }}</del>
+            </span>
+            <span>ksh {{ object.discount_price }}</span>
+            {% else %}
+            <span>ksh {{ object.price }}</span>
+            {% endif %}
+          </p>
+          <p>{{ object.description }}</p>
+        </div>
+        <div>
+          <a
+          href="{{ object.get_add_to_cart_url }}"
+          class="btn btn-primary btn-sm my-0 p pbtn">
+          Add to cart
+          <i class="fas fa-shopping-cart ml-1"></i>
+          </a>
+
+          <a href="{{ object.get_remove_from_cart_url }}"
+            class="btn btn-danger btn-sm my-0 p pbtn">
+            Remove from cart
+          </a>
+        </div>
+        <a href='/home' class="btn btn-info btn-sm pbtn">View More Products</a>
+      </div>
+      <div class="col-md-4">
+        <h4>Related Products</h4>
+        <h5>{{item.additional_information}}</h5>
+        <img
+            *ngIf="item.image"
+            src="{{ object.related_image1.url }}"
+            alt="{{ item.title }}"
+            class="img-fluid adimage"
+          />
+          <img
+            *ngIf="item.image"
+            src="{{ object.related_image2.url }}"
+            alt="{{ item.title }}"
+            class="img-fluid adimage"
+          />
+          <img
+            *ngIf="item.image"
+            src="{{ object.related_image3.url }}"
+            alt="{{ item.title }}"
+            class="img-fluid adimage"
+          />
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
