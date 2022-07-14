@@ -15,6 +15,8 @@ from core.forms import LoginForm, RegistrationForm, UserProfileForm
 from django.core.exceptions import ObjectDoesNotExist
 from core.forms import UserProfileForm,CheckoutForm, ProductForm
 from django.db.models import Q
+from django.core.paginator import Paginator
+
 
 
 # def welcome(request):
@@ -38,13 +40,18 @@ def home(request):
 
     questions = Item.objects.filter(
         Q(title__icontains=q) |
-        Q(description__icontains=q)
+        Q(description__icontains=q)|
+        Q(category__icontains=q)
     )
 
+    paginator = Paginator(questions, 12) # Show 10 products per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     # items = Item.objects.all()
-    print(questions)
+    print(paginator.num_pages)
     context = {
-        'items': questions
+        'items': page_obj
 
     }
     return render(request, 'home.html', context)

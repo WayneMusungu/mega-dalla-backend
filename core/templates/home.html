@@ -11,22 +11,25 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" id="nav-link" href="#"
+            <a class="nav-link" id="nav-link" href="{% url 'core:home'%}"
               >All
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="nav-link" href="#">Electronics</a>
+            <a class="nav-link" id="nav-link" href="{% url 'core:home'%}?q=electronics">Electronics</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="nav-link" href="#">Shirts</a>
+            <a class="nav-link" id="nav-link" href="{% url 'core:home'%}?q=Food">Food</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="nav-link" href="#">Sport wears</a>
+            <a class="nav-link" id="nav-link" href="{% url 'core:home'%}?q=clothes">Shirts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="nav-link" href="#">Outwears</a>
+            <a class="nav-link" id="nav-link" href="{% url 'core:home'%}?q=clothes">Sport wears</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-link" href="{% url 'core:home'%}?q=clothes">Outwears</a>
           </li>
         </ul>
         <!-- Links -->
@@ -84,14 +87,14 @@
 
     <!--Pagination-->
 
-    {% if is_paginated %}
+    {% if items.has_other_pages %}
     <nav class="d-flex justify-content-center wow fadeIn">
       <ul class="pagination pg-blue">
-        {% if page_obj.has_previous %}
+        {% if items.has_previous %}
         <li class="page-item">
           <a
             class="page-link"
-            href="?page={{ page_obj.previous_page_number }}"
+            href="?page={{ items.previous_page_number }}"
             aria-label="Previous"
           >
             <span aria-hidden="true">&laquo;</span>
@@ -102,16 +105,16 @@
 
         <li class="page-item active">
           <a class="page-link" href="?page={{ page_obj.number }}"
-            >{{ page_obj.number }}
+            >{{ items.number }}
             <span class="sr-only">(current)</span>
           </a>
         </li>
 
-        {% if page_obj.has_next %}
+        {% if items.has_next %}
         <li class="page-item">
           <a
             class="page-link"
-            href="?page={{ page_obj.next_page_number }}"
+            href="?page={{ items.next_page_number }}"
             aria-label="Next"
           >
             <span aria-hidden="true">&raquo;</span>
