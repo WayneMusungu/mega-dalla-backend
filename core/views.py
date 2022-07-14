@@ -17,6 +17,7 @@ from core.forms import UserProfileForm,CheckoutForm, ProductForm
 from django.db.models import Q
 
 
+# Create your views here.
 # def welcome(request):
 #     return HttpResponse('Welcome to the login page')
 def welcome(request):
@@ -34,14 +35,16 @@ def home(request):
 
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     # questions = Question.objects.all()
-    print(q)
 
     questions = Item.objects.filter(
-        Q(title__icontains=q) |
-        Q(description__icontains=q)
+
+        Q(category__icontains=q) |
+        Q(title__icontains=q)
+
     )
 
-    # items = Item.objects.all()
+    items = Item.objects.all()
+    # print(items)
     print(questions)
     context = {
         'items': questions
@@ -547,5 +550,3 @@ def remove_single_item_cart(request, slug):
         # display message that order doesnt exist
         messages.danger(request, "Item doesnt exist")
         return redirect("core:product", slug=slug)
-
-

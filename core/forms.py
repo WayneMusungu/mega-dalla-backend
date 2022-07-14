@@ -9,9 +9,12 @@ from django_countries.widgets import CountrySelectWidget
 
 PAYMENT_CHOICES = (
 
-    ('F', 'Flutterwave'),
+    ('M', 'Flutterwave'),
+    ('S', 'Stripe'),
+    ('P', 'Paypal')
 
 )
+
 
 
 class ProductForm(forms.ModelForm):
