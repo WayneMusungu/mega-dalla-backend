@@ -19,6 +19,7 @@ from django.core.paginator import Paginator
 
 
 
+# Create your views here.
 # def welcome(request):
 #     return HttpResponse('Welcome to the login page')
 def welcome(request):
@@ -36,7 +37,6 @@ def home(request):
 
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     # questions = Question.objects.all()
-    print(q)
 
     questions = Item.objects.filter(
         Q(title__icontains=q) |
@@ -554,5 +554,3 @@ def remove_single_item_cart(request, slug):
         # display message that order doesnt exist
         messages.danger(request, "Item doesnt exist")
         return redirect("core:product", slug=slug)
-
-
