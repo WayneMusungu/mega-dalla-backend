@@ -38,6 +38,7 @@
               type="text"
               placeholder="Search"
               aria-label="Search"
+              name="q"
             />
           </div>
         </form>
@@ -45,7 +46,7 @@
       <!-- Collapsible content -->
     </nav>
     <!--/.Navbar-->
-  
+
 
     <!--Section: Products v.3-->
     <section class="text-center mb-4">
@@ -73,10 +74,13 @@
               <a href="{{ item.get_absolute_url }}" class="btn btn-outline-warning btn-sm">View</a>
             </div>
           </div>
-        </div>{%endfor%}
+        </div>
+        {%empty%}
+          <h3>No such item(s)</h3>
+        {%endfor%}
       </div>
     </section>
-    <!--Section: Products v.3--> 
+    <!--Section: Products v.3-->
 
     <!--Pagination-->
 
@@ -122,5 +126,5 @@
 </div></div>
 
 
- 
+
 {% endblock %}
